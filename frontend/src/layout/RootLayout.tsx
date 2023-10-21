@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 export default function Root() {
     return (
-      <div className = "p-5">
+      <div className="flex justify-center items-center flex-col">
         <Head/>
         <div className = "p-5 m-auto">
           <Outlet/>
@@ -29,7 +29,7 @@ function Head() {
 function Foot() {
   return (
     <div>
-      Made in react and tailwind!
+      Made by Bokai, Michael, Max, Timmy
     </div>
   )
 }
