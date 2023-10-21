@@ -2,15 +2,16 @@ import { Outlet } from "react-router-dom";
 
 export default function Root() {
     return (
-      <div className="flex justify-center items-center flex-col">
+      <div className = "p-5" >
         <Head/>
-        <div className = "p-5 m-auto">
+        <div className="flex justify-center items-center flex-col">
           <Outlet/>
+          <footer>
+            <Foot/>
+          </footer>
         </div>
 
-        <footer>
-        <Foot/>
-      </footer>
+
         
       </div>
 
