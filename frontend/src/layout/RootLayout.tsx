@@ -4,8 +4,8 @@ export default function Root() {
     return (
       <div className = "p-2">
         <Head/>
-        <p>Home</p>
         <Outlet/>
+        <Foot/>
       </div>
     )
   }
@@ -15,6 +15,14 @@ function Head() {
   return (
     <div>
         LLM BUZZFEED!
+    </div>
+  )
+}
+
+function Foot() {
+  return (
+    <div>
+      Made in react and tailwind!
     </div>
   )
 }
