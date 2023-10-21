@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 export default function Root() {
     return (
@@ -22,7 +22,7 @@ export default function Root() {
 function Head() {
   return (
     <div>
-        LLM BUZZFEED!
+        <Link to = "/">LLM BUZZFEED!</Link>
     </div>
   )
 }
