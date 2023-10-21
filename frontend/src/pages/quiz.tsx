@@ -1,5 +1,6 @@
 import { questions, qData } from "../utils/questions";
 import { Dispatch, SetStateAction, useState , useEffect} from "react";
+import { Link } from "react-router-dom"
 
 interface ansData{
   q: string,
@@ -61,7 +62,9 @@ const handleSubmit =(e: React.SyntheticEvent<HTMLFormElement>) =>{
                 className = "border-2 p-2 border-gray-300 rounded-md focus:transition ease-linear" required/>
             </div>
             )}
-            <input type="submit" value="Submit"/>
+            <button type="submit" value="Submit">
+              <Link to = "/result" >Submit</Link> 
+            </button>
           </form>
           
         </div>

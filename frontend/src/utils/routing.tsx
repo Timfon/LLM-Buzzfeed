@@ -4,6 +4,7 @@ import Start from '../pages/start';
 
 import Root from '../layout/RootLayout';
 import Quiz from '../pages/quiz';
+import Result from '../pages/result';
 
 export const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
             {
                 path:"quiz",
                 element: <Quiz/>
+            },
+            {
+                path:"result",
+                element: <Result/>
             }
         ]
 
