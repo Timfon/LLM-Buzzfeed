@@ -61,10 +61,12 @@ const handleSubmit =(e: React.SyntheticEvent<HTMLFormElement>) =>{
                 className = "border-2 p-2 border-gray-300 rounded-md focus:transition ease-linear" required/>
             </div>
             )}
-            <input type="submit" value="Submit"/>
-          </form>
-          
+            <div className = "mx-auto">
+              <input type="submit" value="Submit" className = "bg-blue-500 hover:bg-blue-700 my-2 p-2 text-white rounded-md transition ease-in-out duration-75 hover:scale-110"/>
+            </div>
+          </form>  
         </div>
+
 
       </>
     );
