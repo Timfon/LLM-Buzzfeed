@@ -4,11 +4,14 @@ import dotenv from "dotenv"
 import OpenAI from "openai";
 import analysisRouter from "./routers/analysis-route.js"
 
+
+
 const app = express();
 
 dotenv.config();
 
-app.use(cors());
+app.use("/", cors());
+app.options('*', cors());
 app.use(json({
     verify: (req, buf) => {
         req.rawBody = buf.toString();

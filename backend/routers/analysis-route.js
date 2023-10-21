@@ -50,6 +50,7 @@ router.post('/', async (req, res) => {
 
     let color = "#000000"
     res.status(200).json({"analysis":responseBody, "color":color})
+    console.log(responseBody)
 
     return;
 })

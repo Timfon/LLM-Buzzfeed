@@ -17,15 +17,27 @@ export default function Quiz() {
 
 };
 
-const handleSubmit =(e: React.SyntheticEvent<HTMLFormElement>) =>{
-    const requestOptions = {
+const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
+    console.log("Start submiting")
+
+    const response = fetch("http://localhost:5140/analysis", 
+    {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: answers
-  };
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+      topic: "TEMPLATE",
+      style: "TEMPLATE",
+      content: answers.map(a => ({question:a.q, answer:a.a}))
+    })
+    }).then((res) => {
+      console.log(res)
+      console.log(res.body)
+      res.body
+    }).catch((err) => console.log("Error: " + err))
 
-
-    console.log(answers);
+    console.log(response);
     e.preventDefault();
 }
 
