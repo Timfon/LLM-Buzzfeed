@@ -1,30 +1,9 @@
+import { Link } from "react-router-dom"
 
-
-export default function Start() {
-    return (
-      <>
-        <div id="sidebar">
-          <h1>What is your favorite dog?</h1>
-          <div>
-            <form id="user-input" role="input">
-              <input
-                id="q"
-                aria-label="Buzz feed input"
-                placeholder="Type your answer here!"
-                type="input"
-                name="q"
-              />
-              <div
-                className="sr-only"
-                aria-live="polite"
-              ></div>
-            </form>
-            <form method="post">
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        </div>
-        <div id="detail"></div>
-      </>
-    );
-  }
+export default function Start(){
+    return(
+        <button className = "duration-300 bg-blue-600 text-white p-2 rounded-md hover:scale-110 transition ease-in-out">
+            <Link to = "/quiz" >Start Quiz!</Link>
+        </button>
+    )
+}

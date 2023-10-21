@@ -3,6 +3,7 @@ import BadURL from '../pages/404';
 import Start from '../pages/start';
 
 import Root from '../layout/RootLayout';
+import Quiz from '../pages/quiz';
 
 export const router = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <Start/>
+            },
+            {
+                path:"quiz",
+                element: <Quiz/>
             }
         ]
 

@@ -2,11 +2,18 @@ import { Outlet } from "react-router-dom";
 
 export default function Root() {
     return (
-      <div className = "p-2">
+      <div className = "p-5">
         <Head/>
-        <Outlet/>
+        <div className = "p-5 m-auto">
+          <Outlet/>
+        </div>
+
+        <footer>
         <Foot/>
+      </footer>
+        
       </div>
+
     )
   }
 
