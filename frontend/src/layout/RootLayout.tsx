@@ -4,10 +4,10 @@ export default function Root() {
     return (
       <div className = "h-screen flex flex-col p-5">
         <Head/>
-        <div className="align-middle flex-grow justify-center">
+        <div className="align-middle flex-grow justify-center my-auto">
           <Outlet/>
         </div>
-        <footer>
+        <footer className = "p-2">
             <div>
               Made by Bokai, Michael, Max, Timmy
             </div>
