@@ -25,7 +25,7 @@ const handleSubmit =(e: React.SyntheticEvent<HTMLFormElement>) =>{
   };
 
 
-    console.log("submitted form!");
+    console.log(answers);
     e.preventDefault();
 }
 
@@ -53,12 +53,12 @@ const handleSubmit =(e: React.SyntheticEvent<HTMLFormElement>) =>{
       <>
         <div className = "transition-opacity ease-in duration-75" id="sidebar">
           <form id="Quiz" onSubmit={ e=> handleSubmit(e)}>
-            {answers.map((index: number) =>
-            <div className = "flex my-5 p-2">
-              <label className = "mr-2 p-2 font-semibold">{index + 1+ ". " + randomSubset[index].q}</label>
-              <input maxLength={50} value = {answers[index]} onChange = {e => setAnswers({q: randomSubset[index].q, a: e.target.value}, index)} 
-                name = {randomSubset[index].tag} id = {randomSubset[index].tag} 
-                className = "border-2 p-2 border-gray-300 rounded-md focus:transition ease-linear"/>
+            {randomSubset.map((question: qData, index: number) =>
+            <div className = "flex my-5 p-2" key = {index}>
+              <label className = "mr-2 p-2 font-semibold">{question.q}</label>
+              <input maxLength={50} value = {answers[index]} onChange = {e => setAnswers({q: question.q, a: e.target.value}, index)} 
+                name = {question.tag} id = {question.tag} 
+                className = "border-2 p-2 border-gray-300 rounded-md focus:transition ease-linear" required/>
             </div>
             )}
             <input type="submit" value="Submit"/>
