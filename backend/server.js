@@ -1,6 +1,8 @@
 import express, { json } from "express";
 import cors from "cors";
 import dotenv from "dotenv"
+import OpenAI from "openai";
+import analysisRouter from "./routers/analysis-route.js"
 
 const app = express();
 
@@ -12,6 +14,8 @@ app.use(json({
         req.rawBody = buf.toString();
     },
 }));
+
+app.use("/analysis", analysisRouter);
 
 //app.use("/user", userRouter);
 //app.use("/cashier", cashierRouter);
