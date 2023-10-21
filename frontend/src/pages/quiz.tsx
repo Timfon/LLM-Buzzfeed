@@ -11,6 +11,8 @@ interface ansData{
 export default function Quiz() {
   const [randomSubset, setRand] = useState<Array<qData>>([]);
   const [answers, _setAnswers] = useState(Array(10));
+  const [tone, setTone] = useState("humorous");
+  const [topic, setTopic] = useState("personality");
 
   const setAnswers = (answer: ansData, index: number) => {
 
@@ -63,7 +65,17 @@ const handleSubmit =(e: React.SyntheticEvent<HTMLFormElement>) =>{
             </div>
             )}
 
-      
+            <div className = "flex font-semibold">
+              <p className = "p-2">We'll determine your:</p>
+              <select className = "border-2 bg-transparent p-2 border-gray-300 rounded-md focus:transition ease-linear" onChange = {e => setTopic(e.target.value)}>
+                <option selected value="personality">personality</option>
+                <option value="character">fictional character</option>
+                <option value="color">color</option>   
+              </select>
+              <p className = "p-2">in a</p>
+              <input maxLength={50} className = "border-2 p-2 border-gray-300 rounded-md focus:transition ease-linear" value={tone} onChange = {e => setTone(e.target.value)}/>
+              <p className = "p-2">tone!</p>
+            </div>
             <div className = "mx-auto">
               <input type="submit" value="Submit" className = "bg-blue-500 hover:bg-blue-700 my-2 p-2 text-white rounded-md transition ease-in-out duration-75 hover:scale-110"/>
             </div>
