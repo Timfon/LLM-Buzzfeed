@@ -50,5 +50,9 @@ export const questions: qData[] = [
     {
         tag: "cereal",
         q: "How do you eat your cereal?"
+    },
+    {
+        tag: "blood",
+        q: "What is your blood type?"
     }
 ]
