@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     const prompt = "{" + (content
         .map(entry => entry.question + ":" + entry.answer)
         .join(", ")) + "}"
-    const systemInstructions = `Use the following questions and answers to determine someones ${req.body.topic}. Respond in a ${req.body.style} tone, using only 1 paragraph. In your answer, first provide a single sentence conclusion. Talk in second person`
+    const systemInstructions = `Use the following questions and answers to determine my ${req.body.topic}. Respond in a ${req.body.style} tone, using only 1 paragraph.`
 
     const colorPrompt = `Based on the above responses, please give a color that represents the ${req.body.topic}.  Please only include the hex notation of the color as a single word and nothing else.`
 
