@@ -2,14 +2,16 @@ import { Outlet, Link } from "react-router-dom";
 
 export default function Root() {
     return (
-      <div className = "p-5" >
+      <div className = "h-screen flex flex-col p-5">
         <Head/>
-        <div className="flex justify-center items-center flex-col">
+        <div className="align-middle flex-grow justify-center">
           <Outlet/>
-          <footer>
-            <Foot/>
-          </footer>
         </div>
+        <footer>
+            <div>
+              Made by Bokai, Michael, Max, Timmy
+            </div>
+        </footer>
 
 
         
@@ -21,16 +23,8 @@ export default function Root() {
 
 function Head() {
   return (
-    <div>
+    <div className = "mb-5 text-lg">
         <Link to = "/">LLM BUZZFEED!</Link>
-    </div>
-  )
-}
-
-function Foot() {
-  return (
-    <div>
-      Made by Bokai, Michael, Max, Timmy
     </div>
   )
 }
