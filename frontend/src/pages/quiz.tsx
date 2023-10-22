@@ -30,8 +30,8 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-      topic: "TEMPLATE",
-      style: "TEMPLATE",
+      topic: topic,
+      style: tone,
       content: answers.map(a => ({question:a.q, answer:a.a}))
     })
     }).then((res) => {
