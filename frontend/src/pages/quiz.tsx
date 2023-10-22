@@ -1,5 +1,15 @@
 import { questions, qData } from "../utils/questions";
 import { useState , useEffect} from "react";
+import { useSpring, animated } from "@react-spring/web"
+
+function ResultAnimator() {
+  const springs = useSpring({
+    from: { y: -100 },
+    to: { y: 0},
+    config: { tension:120, friction:14 }
+  })
+  return springs
+}
 
 interface ansData{
   q: string,
@@ -100,13 +110,15 @@ interface interp{
 function Interpretation({paragraph}: interp){
   const headers = ["What we think about you", "You are...", "Our Interpretation", "A deep into your soul..."]
   return(  
-  <div className = "p-4">
+  <animated.div style={{...ResultAnimator()}}>
+    <div className = "p-4">
     <div className = "flex flex-col items-center text-8xl font-bold mb-5"><p>{headers[Math.floor(Math.random() * headers.length)]}</p></div>
     <p className = "text-lg">{paragraph}</p>
     <div className = "flex flex-col items-center">
     <button onClick ={() =>window.location.reload()} className = "hover:scale-110 transition-scale ease-in-out duration-200 mt-5 text-lg font-bold p-2 bg-white rounded-md w-min text-purple-500">Restart!</button>
     </div>
   </div>
+  </animated.div>
   
   );
 
