@@ -89,7 +89,7 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
             <div className = "mx-auto">
               { !(submitted)? <input type="submit" value="Submit" 
               className = "bg-indigo-950 my-2 p-2 text-white rounded-md transition ease-in-out duration-75 hover:scale-110 font-semibold"/> : 
-              <div className = "border-2 p-2 border-white bg-transparent rounded-md focus:transition ease-linear"></div>}
+              <div className = "border-2 p-2 border-white bg-transparent rounded-md focus:transition ease-linear">Loading</div>}
             </div>
 
 
