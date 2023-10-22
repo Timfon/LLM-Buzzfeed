@@ -70,25 +70,25 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
             {randomSubset.map((question: qData, index: number) =>
             <div className = "flex my-5 p-2" key = {index}>
               <label className = "mr-2 p-2 font-semibold">{question.q}</label>
-              <input maxLength={50} value = {answers[index]} onChange = {e => setAnswers({q: question.q, a: e.target.value}, index)} 
+              <input maxLength={50} value = {answers[index]} defaultValue = "" onChange = {e => setAnswers({q: question.q, a: e.target.value}, index)} 
                 name = {question.tag} id = {question.tag} 
-                className = "border-2 p-2 border-gray-300 rounded-md focus:transition ease-linear" required/>
+                className = "border-2 p-2 border-white rounded-md bg-opacity-75 bg-transparent" required/>
             </div>
             )}
 
             <div className = "flex font-semibold">
               <p className = "p-2">We'll determine your:</p>
-              <select className = "border-2 bg-transparent p-2 border-gray-300 rounded-md focus:transition ease-linear" onChange = {e => setTopic(e.target.value)}>
-                <option selected value="personality">personality</option>
+              <select className = "border-2 bg-transparent p-2 border-white rounded-md" onChange = {e => setTopic(e.target.value)}>
+                <option defaultValue="personality">personality</option>
                 <option value="character">fictional character</option>
                 <option value="color">color</option>   
               </select>
               <p className = "p-2">in a</p>
-              <input maxLength={50} className = "border-2 p-2 border-gray-300 rounded-md focus:transition ease-linear" value={tone} onChange = {e => setTone(e.target.value)}/>
+              <input maxLength={50} className = "border-2 p-2 border-white bg-transparent rounded-md focus:transition ease-linear" defaultValue={tone} onChange = {e => setTone(e.target.value)}/>
               <p className = "p-2">tone!</p>
             </div>
             <div className = "mx-auto">
-              <input type="submit" value="Submit" className = "bg-blue-500 hover:bg-blue-700 my-2 p-2 text-white rounded-md transition ease-in-out duration-75 hover:scale-110"/>
+              <input type="submit" value="Submit" className = "bg-indigo-950 my-2 p-2 text-white rounded-md transition ease-in-out duration-75 hover:scale-110 font-semibold"/>
             </div>
           </form>  
         </div>   
