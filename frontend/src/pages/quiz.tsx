@@ -65,7 +65,6 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
 
 
     return (
-      <>
         <div className = "transition-opacity ease-in duration-75" id="sidebar">
           <form id="Quiz" onSubmit={ e=> handleSubmit(e)}>
             {randomSubset.map((question: qData, index: number) =>
@@ -92,9 +91,6 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
               <input type="submit" value="Submit" className = "bg-blue-500 hover:bg-blue-700 my-2 p-2 text-white rounded-md transition ease-in-out duration-75 hover:scale-110"/>
             </div>
           </form>  
-        </div>
-
-
-      </>
+        </div>   
     );
   }
