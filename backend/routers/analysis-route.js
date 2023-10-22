@@ -29,19 +29,16 @@ router.post('/', async (req, res) => {
 
     console.log(content)
     console.log(req.body.style)
-    console.log(req.body.topic)
+    
 
     const prompt = "{" + (content
         .map(entry => entry.question + ":" + entry.answer)
         .join(", ")) + "}"
 
     const tones = ["humorous", "old english", "owospeak", "flirtatious", "joking", "energetic", "intoxicated", "serious", "dejected", "enigmatic", "aggressive"]
-
-    const systemInstructions = `Use the following questions and answers to determine my ${req.body.topic}. Respond in a ${tones[Math.random() * tones.length()]} tone, using 1 long paragraph. Use 2nd person`
-
-
-
-    console.log(prompt)
+    const random_tone = tones[Math.floor(Math.random() * tones.length)]
+    console.log(random_tone);
+    const systemInstructions = `Use the following questions and answers to determine my ${req.body.topic}. Respond in a ${random_tone} tone, using 1 long paragraph. Use 2nd person`
 
     let responseBody;
     if (process.env.OPENAI_API_KEY != "1") {
