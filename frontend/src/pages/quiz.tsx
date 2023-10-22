@@ -113,7 +113,7 @@ function Interpretation({paragraph}: interp){
   <animated.div style={{...ResultAnimator()}}>
     <div className = "p-4">
     <div className = "flex flex-col items-center text-8xl font-bold mb-5"><p>{headers[Math.floor(Math.random() * headers.length)]}</p></div>
-    <p className = "text-lg">{paragraph}</p>
+    <p className = "text-xl my-3 py-2 px-20 ">{paragraph}</p>
     <div className = "flex flex-col items-center">
     <button onClick ={() =>window.location.reload()} className = "hover:scale-110 transition-scale ease-in-out duration-200 mt-5 text-lg font-bold p-2 bg-white rounded-md w-min text-purple-500">Restart!</button>
     </div>

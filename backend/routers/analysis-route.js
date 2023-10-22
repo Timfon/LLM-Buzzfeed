@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
     const tones = ["humorous", "old english", "owospeak", "flirtatious", "joking", "energetic", "intoxicated", "serious", "dejected", "enigmatic", "aggressive"]
     const random_tone = tones[Math.floor(Math.random() * tones.length)]
     console.log(random_tone);
-    const systemInstructions = `Use the following questions and answers to determine my ${req.body.topic}. Respond in a ${random_tone} tone, using 1 long paragraph. Use 2nd person`
+    const systemInstructions = `Use the following questions and answers to determine my ${req.body.topic}. Respond in a ${random_tone} tone, using 1 paragraph. Use 2nd person`
 
     let responseBody;
     if (process.env.OPENAI_API_KEY != "1") {
