@@ -16,6 +16,7 @@ export default function Quiz() {
   const [topic, setTopic] = useState("personality");
   const [response, setResponse] = useState("");
   const [hasResponse, setHasResponse] = useState(false);
+  const [submitted, setSubmitted] = useState(false)
 
   const setAnswers = (answer: ansData, index: number) => {
 
@@ -26,6 +27,7 @@ export default function Quiz() {
 const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
     console.log("Start submiting")
     e.preventDefault();
+    setSubmitted(true);
     let resp = (await (await fetch("http://localhost:5140/analysis", 
     {
       method: 'POST',
@@ -42,14 +44,7 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
     setResponse(resp.analysis)
     console.log("Done")
     console.log(response)
-    setHasResponse(true);
-
-    //return redirect("/result");
-    
-
-
-
-    
+    setHasResponse(true);   
 }
 
 
@@ -75,6 +70,14 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
     return !hasResponse ? (
         <div className = {"transition-opacity ease-in duration-75 " + opacity} id="sidebar">
           <form id="Quiz" onSubmit={ e=> handleSubmit(e)}>
+          <div className = "flex font-semibold">
+              <p className = "p-2">We'll determine your:</p>
+              <input maxLength={50} className = "border-2 p-2 border-white bg-transparent rounded-md focus:transition ease-linear" defaultValue={topic} onChange = {e => setTopic(e.target.value)}/>
+              <p className = "p-2">in a</p>
+              <input maxLength={50} className = "border-2 p-2 border-white bg-transparent rounded-md focus:transition ease-linear" defaultValue={tone} onChange = {e => setTone(e.target.value)}/>
+              <p className = "p-2">tone!</p>
+            </div>
+            
             {randomSubset.map((question: qData, index: number) =>
             <div className = "flex my-5 p-2" key = {index}>
               <label className = "mr-2 p-2 font-semibold">{question.q}</label>
@@ -83,21 +86,13 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
                 className = "border-2 p-2 border-white rounded-md bg-opacity-75 bg-transparent" required/>
             </div>
             )}
-
-            <div className = "flex font-semibold">
-              <p className = "p-2">We'll determine your:</p>
-              <select className = "border-2 bg-transparent p-2 border-white rounded-md" onChange = {e => setTopic(e.target.value)}>
-                <option defaultValue="personality">personality</option>
-                <option value="character">fictional character</option>
-                <option value="color">color</option>   
-              </select>
-              <p className = "p-2">in a</p>
-              <input maxLength={50} className = "border-2 p-2 border-white bg-transparent rounded-md focus:transition ease-linear" defaultValue={tone} onChange = {e => setTone(e.target.value)}/>
-              <p className = "p-2">tone!</p>
-            </div>
             <div className = "mx-auto">
-              <input type="submit" value="Submit" className = "bg-indigo-950 my-2 p-2 text-white rounded-md transition ease-in-out duration-75 hover:scale-110 font-semibold"/>
+              { !(submitted)? <input type="submit" value="Submit" 
+              className = "bg-indigo-950 my-2 p-2 text-white rounded-md transition ease-in-out duration-75 hover:scale-110 font-semibold"/> : 
+              <div className = "border-2 p-2 border-white bg-transparent rounded-md focus:transition ease-linear"></div>}
             </div>
+
+
           </form>  
         </div>   
     ) : <div>{response}</div>;
