@@ -14,6 +14,8 @@ export default function Quiz() {
   const [answers, _setAnswers] = useState(Array(10));
   const [tone, setTone] = useState("humorous");
   const [topic, setTopic] = useState("personality");
+  const [response, setResponse] = useState("");
+  const [hasResponse, setHasResponse] = useState(false);
 
   const setAnswers = (answer: ansData, index: number) => {
 
@@ -23,8 +25,8 @@ export default function Quiz() {
 
 const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
     console.log("Start submiting")
-
-    const response = fetch("http://localhost:5140/analysis", 
+    e.preventDefault();
+    let resp = (await (await fetch("http://localhost:5140/analysis", 
     {
       method: 'POST',
       headers: {
@@ -35,16 +37,15 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
       style: tone,
       content: answers.map(a => ({question:a.q, answer:a.a}))
     })
-    }).then((res) => {
-      console.log(res)
-      console.log(res.body)
-      res.body
-     
-    }).catch((err) => console.log("Error: " + err))
+    })).json());
+    console.log(resp)
+    setResponse(resp.analysis)
+    console.log("Done")
+    console.log(response)
+    setHasResponse(true);
 
-
-    redirect("/result");
-    e.preventDefault();
+    //return redirect("/result");
+    
 
 
 
@@ -71,7 +72,7 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
   }, []);
 
 
-    return (
+    return !hasResponse ? (
         <div className = {"transition-opacity ease-in duration-75 " + opacity} id="sidebar">
           <form id="Quiz" onSubmit={ e=> handleSubmit(e)}>
             {randomSubset.map((question: qData, index: number) =>
@@ -99,5 +100,5 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
             </div>
           </form>  
         </div>   
-    );
+    ) : <div>{response}</div>;
   }
