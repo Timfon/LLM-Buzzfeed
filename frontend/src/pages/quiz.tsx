@@ -1,6 +1,5 @@
 import { questions, qData } from "../utils/questions";
-import { Dispatch, SetStateAction, useState , useEffect} from "react";
-import { redirect } from "react-router-dom"
+import { useState , useEffect} from "react";
 
 interface ansData{
   q: string,
@@ -9,7 +8,6 @@ interface ansData{
 
 
 export default function Quiz() {
-  const[opacity, setOpacity] = useState<number>(1.0);
   const [randomSubset, setRand] = useState<Array<qData>>([]);
   const [answers, _setAnswers] = useState(Array(10));
   const [tone, setTone] = useState("humorous");
@@ -68,14 +66,11 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
 
 
     return !hasResponse ? (
-        <div className = {"transition-opacity ease-in duration-75 " + opacity} id="sidebar">
+        <div className = "transition-opacity ease-in duration-75 " id="sidebar">
           <form id="Quiz" onSubmit={ e=> handleSubmit(e)}>
           <div className = "flex font-semibold">
               <p className = "p-2">We'll determine your:</p>
               <input maxLength={50} className = "border-2 p-2 border-white bg-transparent rounded-md focus:transition ease-linear" defaultValue={topic} onChange = {e => setTopic(e.target.value)}/>
-              <p className = "p-2">in a</p>
-              <input maxLength={50} className = "border-2 p-2 border-white bg-transparent rounded-md focus:transition ease-linear" defaultValue={tone} onChange = {e => setTone(e.target.value)}/>
-              <p className = "p-2">tone!</p>
             </div>
             
             {randomSubset.map((question: qData, index: number) =>
@@ -86,14 +81,32 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
                 className = "border-2 p-2 border-white rounded-md bg-opacity-75 bg-transparent" required/>
             </div>
             )}
-            <div className = "mx-auto">
+            <div className = "mx-auto inline-block">
               { !(submitted)? <input type="submit" value="Submit" 
-              className = "bg-indigo-950 my-2 p-2 text-white rounded-md transition ease-in-out duration-75 hover:scale-110 font-semibold"/> : 
-              <div className = "border-2 p-2 border-white bg-transparent rounded-md focus:transition ease-linear">Loading</div>}
+              className = "bg-white my-2 p-2 text-purple-500 rounded-md transition ease-in-out duration-150 hover:scale-110 font-semibold"/> : 
+              <div className = "border-2 font-semibold rounded-md p-2 border-white bg-transparent my-2">Loading</div>}
             </div>
 
 
           </form>  
         </div>   
-    ) : <div>{response}</div>;
+    ) : <div><Interpretation  paragraph = {response}/></div>;
   }
+
+interface interp{
+  paragraph: string
+}
+
+function Interpretation({paragraph}: interp){
+  return(  
+  <div className = "p-4">
+    <div className = "flex flex-col items-center text-8xl font-bold mb-5"><p>Our Interpretation </p></div>
+    <p className = "text-lg">{paragraph}</p>
+    <div className = "flex flex-col items-center">
+    <button onClick ={() =>window.location.reload()} className = "hover:scale-110 transition-scale ease-in-out duration-200 mt-5 text-lg font-bold p-2 bg-white rounded-md w-min text-purple-500">Restart!</button>
+    </div>
+  </div>
+  
+  );
+
+}

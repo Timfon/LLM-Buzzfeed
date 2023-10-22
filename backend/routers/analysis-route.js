@@ -34,9 +34,12 @@ router.post('/', async (req, res) => {
     const prompt = "{" + (content
         .map(entry => entry.question + ":" + entry.answer)
         .join(", ")) + "}"
-    const systemInstructions = `Use the following questions and answers to determine my ${req.body.topic}. Respond in a ${req.body.style} tone, using only 1 paragraph.`
 
-    const colorPrompt = `Based on the above responses, please give a color that represents the ${req.body.topic}.  Please only include the hex notation of the color as a single word and nothing else.`
+    const tones = ["humorous", "old english", "owospeak", "flirtatious", "joking", "energetic", "intoxicated", "serious", "dejected", "enigmatic", "aggressive"]
+
+    const systemInstructions = `Use the following questions and answers to determine my ${req.body.topic}. Respond in a ${tones[Math.random() * tones.length()]} tone, using 1 long paragraph. Use 2nd person`
+
+
 
     console.log(prompt)
 
