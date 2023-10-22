@@ -39,13 +39,19 @@ router.post('/', async (req, res) => {
     const colorPrompt = `Based on the above responses, please give a color that represents the ${req.body.topic}.  Please only include the hex notation of the color as a single word and nothing else.`
 
     console.log(prompt)
+
+    let responseBody;
+    if (process.env.OPENAI_API_KEY != "1") {
     const completion = await openai.chat.completions.create({
         messages: [{ role: "system", content: systemInstructions }
     , { role: "user", content: prompt}],
         model: "gpt-3.5-turbo",
     });
+    responseBody = completion.choices[0].message.content; 
+} else {
+    responseBody = "Test output";
+}
     
-    let responseBody = completion.choices[0].message.content;
     // send to chatgpt here
 
     let color = "#000000"
