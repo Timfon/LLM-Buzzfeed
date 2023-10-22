@@ -1,6 +1,6 @@
 import { questions, qData } from "../utils/questions";
 import { Dispatch, SetStateAction, useState , useEffect} from "react";
-import { Link } from "react-router-dom"
+import { redirect } from "react-router-dom"
 
 interface ansData{
   q: string,
@@ -9,6 +9,7 @@ interface ansData{
 
 
 export default function Quiz() {
+  const[opacity, setOpacity] = useState<number>(1.0);
   const [randomSubset, setRand] = useState<Array<qData>>([]);
   const [answers, _setAnswers] = useState(Array(10));
   const [tone, setTone] = useState("humorous");
@@ -38,10 +39,16 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
       console.log(res)
       console.log(res.body)
       res.body
+     
     }).catch((err) => console.log("Error: " + err))
 
-    console.log(response);
+
+    redirect("/result");
     e.preventDefault();
+
+
+
+    
 }
 
 
@@ -65,12 +72,12 @@ const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) =>{
 
 
     return (
-        <div className = "transition-opacity ease-in duration-75" id="sidebar">
+        <div className = {"transition-opacity ease-in duration-75 " + opacity} id="sidebar">
           <form id="Quiz" onSubmit={ e=> handleSubmit(e)}>
             {randomSubset.map((question: qData, index: number) =>
             <div className = "flex my-5 p-2" key = {index}>
               <label className = "mr-2 p-2 font-semibold">{question.q}</label>
-              <input maxLength={50} value = {answers[index]} defaultValue = "" onChange = {e => setAnswers({q: question.q, a: e.target.value}, index)} 
+              <input maxLength={50} onChange = {e => setAnswers({q: question.q, a: e.target.value}, index)} 
                 name = {question.tag} id = {question.tag} 
                 className = "border-2 p-2 border-white rounded-md bg-opacity-75 bg-transparent" required/>
             </div>
