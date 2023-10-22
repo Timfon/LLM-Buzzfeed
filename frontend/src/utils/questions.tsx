@@ -132,6 +132,10 @@ export const questions: qData[] = [
         q: "What is your favorite season?"
     },
     {
+        tag: "baby",
+        q: "How much money would it take for you to hit a baby?"
+    },
+    {
         tag: "fear",
         q: "What's your biggest fear?"
     }
